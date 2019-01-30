@@ -8,7 +8,14 @@ let secondOnes_Counter = 0;
 let msHundreds_Counter = 0;
 let msTens_Counter = 0;
 
-window.setInterval(function() {
+let red_text = document.createElement("style");
+red_text.type = "text/css";
+red_text.innerHTML = ".redText {color: red;}";
+document.getElementsByTagName("head")[0].appendChild(red_text);
+
+let timerbtns = document.querySelectorAll(".digit");
+
+function timer() {
   msTens_Counter++;
   msTens.textContent = msTens_Counter;
   if (msTens_Counter > 9) {
@@ -17,7 +24,7 @@ window.setInterval(function() {
 
     msHundreds_Counter += 1;
     msHundreds.textContent = msHundreds_Counter;
-    if (msHundreds_Counter >= 6) {
+    if (msHundreds_Counter > 9) {
       msHundreds_Counter = 0;
       msHundreds.textContent = msHundreds_Counter;
 
@@ -30,11 +37,13 @@ window.setInterval(function() {
         secondTens_Counter += 1;
         secondTens.textContent = secondTens_Counter;
         if ((secondTens_Counter = 1)) {
-          window.clearInterval();
+          timerbtns.forEach(btn => btn.classList.add("redText"));
+          clearInterval(timerCB);
         }
       }
     }
   }
-
   console.log(msTens_Counter);
-}, 10);
+}
+
+let timerCB = setInterval(timer, 10);
