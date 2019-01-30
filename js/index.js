@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   cta: {
-    h1: "DOM <br>Is<br> Awesome",
+    h1: "DOM<br> Is<br> Awesome",
     button: "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -46,10 +46,32 @@ const siteContent = {
 let logo = document.getElementById("logo-img");
 logo.setAttribute("src", siteContent["nav"]["img-src"]);
 
+let green_text = document.createElement("style");
+green_text.type = "text/css";
+green_text.innerHTML = ".greenText {color: green;}";
+document.getElementsByTagName("head")[0].appendChild(green_text);
+
 let nav_items = Object.values(siteContent.nav);
 let nav = document.querySelector("nav");
 let nav_links = nav.querySelectorAll("a");
-[...nav_links].forEach((nav_link, i) => (nav_link.textContent = nav_items[i]));
+
+[...nav_links].forEach((nav_link, i) => {
+  nav_link.textContent = nav_items[i];
+  nav_link.className = "greenText";
+});
+
+let newElement = document.createElement("a");
+newElement.setAttribute("href", "#");
+newElement.textContent = "Shop";
+newElement.className = "greenText";
+
+let newLink = document.createElement("a");
+newLink.setAttribute("href", "#");
+newLink.textContent = "Blog";
+newLink.className = "greenText";
+
+nav.appendChild(newElement);
+nav.prepend(newLink);
 
 let h1 = document.querySelector("h1");
 h1.innerHTML = siteContent.cta.h1;
