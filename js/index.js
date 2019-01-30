@@ -9,7 +9,7 @@ const siteContent = {
     "img-src": "img/logo.png"
   },
   cta: {
-    h1: "DOM Is Awesome",
+    h1: "DOM <br>Is<br> Awesome",
     button: "Get Started",
     "img-src": "img/header-img.png"
   },
@@ -33,7 +33,7 @@ const siteContent = {
   },
   contact: {
     "contact-h4": "Contact",
-    address: "123 Way 456 Street Somewhere, USA",
+    address: "123 Way 456 Street<br> Somewhere, USA",
     phone: "1 (888) 888-8888",
     email: "sales@greatidea.io"
   },
@@ -54,8 +54,8 @@ let nav_links = nav.querySelectorAll("a");
 let h1 = document.querySelector("h1");
 h1.innerHTML = siteContent.cta.h1;
 
-let buttons = document.getElementsByTagName("button");
-[...buttons].forEach(button => (button.innerHTML = siteContent.cta.button));
+let button = (document.querySelector("button").textContent =
+  siteContent.cta.button);
 
 let cta_img = document.getElementById("cta-img");
 cta_img.src = siteContent.cta["img-src"];
@@ -98,7 +98,7 @@ let contact = document.querySelector(".contact");
 contact.querySelector("h4").textContent = siteContent.contact["contact-h4"];
 let contact_p = contact.querySelectorAll("p");
 
-contact_p[0].textContent = siteContent.contact.address;
+contact_p[0].innerHTML = siteContent.contact.address;
 contact_p[1].textContent = siteContent.contact.phone;
 contact_p[2].textContent = siteContent.contact.email;
 
